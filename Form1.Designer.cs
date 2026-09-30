@@ -37,6 +37,7 @@
             label1 = new Label();
             label2 = new Label();
             TxtModifica = new TextBox();
+            buttonSalva = new Button();
             SuspendLayout();
             // 
             // ListBoxAnimali
@@ -76,6 +77,7 @@
             Modifica.TabIndex = 3;
             Modifica.Text = "Modifica";
             Modifica.UseVisualStyleBackColor = true;
+            Modifica.Click += Modifica_Click;
             // 
             // TxtAgg
             // 
@@ -83,6 +85,7 @@
             TxtAgg.Name = "TxtAgg";
             TxtAgg.Size = new Size(100, 23);
             TxtAgg.TabIndex = 4;
+            TxtAgg.TextChanged += TxtAgg_TextChanged;
             // 
             // LblAgg
             // 
@@ -116,13 +119,25 @@
             TxtModifica.Location = new Point(404, 214);
             TxtModifica.Name = "TxtModifica";
             TxtModifica.Size = new Size(100, 23);
-            TxtModifica.TabIndex = 8;
+            TxtModifica.TabIndex = 9;
+            TxtModifica.TextChanged += textBox1_TextChanged;
+            // 
+            // buttonSalva
+            // 
+            buttonSalva.Location = new Point(404, 311);
+            buttonSalva.Name = "buttonSalva";
+            buttonSalva.Size = new Size(75, 23);
+            buttonSalva.TabIndex = 10;
+            buttonSalva.Text = "Salva";
+            buttonSalva.UseVisualStyleBackColor = true;
+            buttonSalva.Click += buttonSalva_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonSalva);
             Controls.Add(TxtModifica);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -149,5 +164,6 @@
         private Label label1;
         private Label label2;
         private TextBox TxtModifica;
+        private Button buttonSalva;
     }
 }

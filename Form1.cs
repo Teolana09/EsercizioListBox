@@ -14,7 +14,13 @@ namespace EsercizioListBox
 
         private void Rimuovi_Click(object sender, EventArgs e)
         {
-
+            int indice = ListBoxAnimali.SelectedIndex;
+            origineDati.RemoveAt(indice);
+            AggiornoLista();
+            if (indice == -1)
+            {
+                MessageBox.Show("Non hai selezionato nessun elemento");
+            }
         }
         private void AggiornoLista()
         {
@@ -29,12 +35,12 @@ namespace EsercizioListBox
             if (parola == null)
             {
                 return false;
-            }  
+            }
             else if (parola == "")
             {
                 return false;
             }
-            for (int i = 0; i < origineDati.Count; i++)
+            for (int i = 0; i < parola.Length; i++)
             {
                 if (parola[i] != ' ')
                 {
@@ -58,7 +64,7 @@ namespace EsercizioListBox
                     while (!sr.EndOfStream)
                     {
                         string riga = sr.ReadLine();
-                        if(ControllaSpazi(riga) != false)
+                        if (ControllaSpazi(riga) != false)
                         {
                             riga = riga.Trim();
                             riga = riga.ToLower();
@@ -68,7 +74,7 @@ namespace EsercizioListBox
                     }
                 }
             }
-            
+
         }
         private void Aggiungi_Click(object sender, EventArgs e)
         {
@@ -83,10 +89,51 @@ namespace EsercizioListBox
                 PAgg = PAgg.ToLower();
                 ListBoxAnimali.Items.Add(PAgg);
                 origineDati.Add(PAgg);
-                AggiornoLista();             
+                AggiornoLista();
 
             }
 
+        }
+
+        private void TxtAgg_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Modifica_Click(object sender, EventArgs e)
+        {
+            string parolaNuova = TxtModifica.Text;
+            int indice = ListBoxAnimali.SelectedIndex;
+            if (indice == -1)
+            {
+                MessageBox.Show("Errore! Non hai selezionato nulla");
+            }
+            else
+            {
+                origineDati[indice] = parolaNuova;
+                AggiornoLista();
+            }
+        }
+
+        private void TxtModifica_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSalva_Click(object sender, EventArgs e)
+        {
+            using(StreamWriter sw = new StreamWriter("Animali.txt"))
+            {
+                foreach(string i in origineDati)
+                {
+                    sw.WriteLine(i);
+                }
+            }
         }
     }
 }
